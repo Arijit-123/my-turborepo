@@ -8,13 +8,13 @@ interface ButtonProps {
   appName: string;
 }
 
-export const Button = () => {
+export const Button = ({ children, className, appName }: ButtonProps) => {
   return (
     <button
-      
-     
+      className={className}
+      onClick={() => alert(`Hello from your ${appName} app!`)}
     >
-     this is your idiotic button
+      {children}
     </button>
   );
 };

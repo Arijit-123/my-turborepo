@@ -1,7 +1,7 @@
 import Image, { type ImageProps } from "next/image";
 import { Button } from "@repo/ui/button";
 import styles from "./page.module.css";
-import { Card } from "@repo/ui/card";
+
 type Props = Omit<ImageProps, "src"> & {
   srcLight: string;
   srcDark: string;
@@ -37,7 +37,7 @@ export default function Home() {
           </li>
           <li>Save and see your changes instantly.</li>
         </ol>
-        <Card   />
+
         <div className={styles.ctas}>
           <a
             className={styles.primary}
@@ -45,7 +45,6 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
           >
-           
             <Image
               className={styles.logo}
               src="/vercel.svg"
@@ -64,7 +63,9 @@ export default function Home() {
             Read our docs
           </a>
         </div>
-        
+        <Button appName="web" className={styles.secondary}>
+          Open alert
+        </Button>
       </main>
       <footer className={styles.footer}>
         <a
