@@ -1,9 +1,13 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
-import Admin from "db/index"
+import {Admin} from "db/index"
+import jwt from "jsonwebtoken"
+const SECRET="SECRET";
+
 type Data = {
-  token: string;
-  
+  token?: string;
+  message?:String;
+  name?: string;
 };
 
 export default async function handler(
@@ -11,8 +15,9 @@ export default async function handler(
   res: NextApiResponse<Data>,
 ) {
   const { username, password } = req.body;
-  const admin=Admin.findOne({username});
-  function callback(admin) {
+  const admin = await Admin.findOne({username});
+
+  function callback(admin:any) {
     if (admin) {
       res.status(403).json({ message: 'Admin already exists' });
     } else {
